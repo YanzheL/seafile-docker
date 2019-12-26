@@ -1,4 +1,4 @@
-FROM seafileltd/pro-base-mc:18.04
+FROM docker.seafile.top/seafileltd/pro-base-mc:18.04
 WORKDIR /opt/seafile
 
 ENV SEAFILE_VERSION=7.0.11 SEAFILE_SERVER=seafile-pro-server
@@ -7,7 +7,8 @@ RUN mkdir -p /etc/my_init.d
 
 RUN mkdir -p /opt/seafile/
 
-RUN curl -sSL -G -d "p=/pro/seafile-pro-server_${SEAFILE_VERSION}_x86-64_Ubuntu.tar.gz&dl=1" https://download.seafile.com/d/6e5297246c/files/ \
+#RUN curl -sSL -G -d "p=/pro/seafile-pro-server_${SEAFILE_VERSION}_x86-64_Ubuntu.tar.gz&dl=1" https://download.seafile.com/d/6e5297246c/files/ \
+RUN curl -sSL -G -d "p=/seafile-pro-server_${SEAFILE_VERSION}_x86-64-Crack.tar.gz&dl=1" https://pan.deny.cx/d/2137f1310be64a43bb52/files/ \
     | tar xzf - -C /opt/seafile/
 
 #ADD seafile-pro-server_${SEAFILE_VERSION}_x86-64_Ubuntu.tar.gz /opt/seafile/
@@ -15,7 +16,7 @@ RUN curl -sSL -G -d "p=/pro/seafile-pro-server_${SEAFILE_VERSION}_x86-64_Ubuntu.
 ADD scripts/create_data_links.sh /etc/my_init.d/01_create_data_links.sh
 
 COPY scripts /scripts
-COPY templates /templates
+COPY image/pro_seafile/templates /templates
 
 EXPOSE 80
 
